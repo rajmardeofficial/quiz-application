@@ -60,6 +60,16 @@ label {
   cursor: pointer;
 }
 
+#replay {
+  background-color: #488d35;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
+}
+
 .hide {
   display: none;
 }

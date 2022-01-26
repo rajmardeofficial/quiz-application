@@ -28,36 +28,28 @@ let questionsList = [
     ans: "ans2",
   },
   {
-    question: " What is the theme for Independence Day celebrations 2021?",
-    option1: "Self-reliant India",
-    option2: "Promote India's culture",
-    option3: "Nation First, Always First",
-    option4: "None of the above",
-    ans: "ans3",
+    question: "What is the full form of HTML",
+    option1: "Hello To My Land",
+    option2: "Hyper Text Markup Language",
+    option3: "Hyper Text Makup Language",
+    option4: "Hello To My theme",
+    ans: "ans2",
   },
   {
-    question: " What is the theme for Independence Day celebrations 2021?",
-    option1: "Self-reliant India",
-    option2: "Promote India's culture",
-    option3: "Nation First, Always First",
+    question: "What is the full form of CSS?",
+    option1: "Cascading Style Sheets",
+    option2: "Cascading Style Show",
+    option3: "Counter Strike ",
     option4: "None of the above",
-    ans: "ans3",
+    ans: "ans1",
   },
   {
-    question: " What is the theme for Independence Day celebrations 2021?",
-    option1: "Self-reliant India",
-    option2: "Promote India's culture",
-    option3: "Nation First, Always First",
+    question: "What is Backend ?",
+    option1: "Part os Software Development",
+    option2: "Belongs to machine parts",
+    option3: "It is back of the car",
     option4: "None of the above",
-    ans: "ans3",
-  },
-  {
-    question: " What is the theme for Independence Day celebrations 2021?",
-    option1: "Self-reliant India",
-    option2: "Promote India's culture",
-    option3: "Nation First, Always First",
-    option4: "None of the above",
-    ans: "ans3",
+    ans: "ans1",
   },
 ];
 
@@ -75,8 +67,21 @@ let option4 = document.getElementById("opt4");
 
 let nextBtn = document.getElementById("next");
 
+//reference for scoreDiv
+
+const scoreDiv = document.getElementById("scoreDiv");
+
+// reference for replay
+
+const replayBtn = document.getElementById("replay");
+
+// reference for score Text
+
+let scoreText = document.getElementById("scoreText");
+
 let countQuestion = 0;
 
+let score = 0;
 
 let loadQuestion = () => {
   questionText.innerText = questionsList[countQuestion].question;
@@ -84,7 +89,6 @@ let loadQuestion = () => {
   option2.innerText = questionsList[countQuestion].option2;
   option3.innerText = questionsList[countQuestion].option3;
   option4.innerText = questionsList[countQuestion].option4;
-  console.log(countQuestion);
 };
 
 loadQuestion();
@@ -95,4 +99,13 @@ nextBtn.addEventListener("click", () => {
   //increment tha value of countQuestion variable to switch question
   countQuestion++;
   console.log(countQuestion);
+  if (countQuestion < questionsList.length) {
+    loadQuestion();
+  } else {
+    scoreDiv.classList.remove("hide");
+    nextBtn.classList.add("hide");
+    scoreText.innerHTML = `
+      Your Score is ${score}
+    `;
+  }
 });
