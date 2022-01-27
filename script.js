@@ -1,18 +1,6 @@
-// let submit = document.getElementById('submit')
-
-// let answers = document.querySelectorAll('.answer')
-
-// function getAnswer(){
-//     answers.forEach((answer)=>{
-//         if(answer.checked){
-//             console.log(answer, answer.id);
-//         }
-//     })
-// }
-
 let questionsList = [
   {
-    question: "What is the theme for Independence Day celebrations 2021?",
+    question: `What is the theme for Independence Day celebrations 2021?`,
     option1: "Self-reliant India",
     option2: "Promote India's culture",
     option3: "Nation First, Always First",
@@ -42,6 +30,7 @@ let questionsList = [
     option3: "Counter Strike ",
     option4: "None of the above",
     ans: "ans1",
+    marks: 4,
   },
   {
     question: "What is Backend ?",
@@ -79,6 +68,10 @@ const replayBtn = document.getElementById("replay");
 
 let scoreText = document.getElementById("scoreText");
 
+// select all input html elements having class name answer
+
+let answers = document.querySelectorAll(".answer");
+
 let countQuestion = 0;
 
 let score = 0;
@@ -93,14 +86,39 @@ let loadQuestion = () => {
 
 loadQuestion();
 
+// function for checking correct answer
+function getAnswer() {
+  let answer;
+
+  answers.forEach((currentElem) => {
+    if (currentElem.checked) {
+      answer = currentElem.id;
+    }
+  });
+  return answer;
+}
+
+function deselect() {
+  answers.forEach((currentElem) => (currentElem.checked = false));
+}
+
+function replay() {
+  location.reload();
+}
+
 //anynomous function
 
 nextBtn.addEventListener("click", () => {
-  //increment tha value of countQuestion variable to switch question
+  const checkedAnswer = getAnswer();
+
+  if (checkedAnswer == questionsList[countQuestion].ans) {
+    score++;
+  }
+  //increment the value of countQuestion variable to switch question
   countQuestion++;
-  console.log(countQuestion);
   if (countQuestion < questionsList.length) {
     loadQuestion();
+    deselect();
   } else {
     scoreDiv.classList.remove("hide");
     nextBtn.classList.add("hide");
@@ -109,3 +127,17 @@ nextBtn.addEventListener("click", () => {
     `;
   }
 });
+
+// for revision purpose
+
+// const cars = ['car1', 'bmw', 'kia', 'seltos']
+
+// for(let i = 0; i < cars.length; i++){
+//   console.log(cars[i]);
+// }
+
+// forEach loop
+
+// cars.forEach((car)=>{
+//   console.log(car);
+// })
